@@ -68,9 +68,9 @@ class Waitlist(db.Model):
 
 class TaskEvent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    action = db.Column(db.String(50), nullable=False)  # 'create', 'toggle', 'delete'
-    task_id = db.Column(db.Integer, nullable=True)  # might be null if task was deleted
-    task_title = db.Column(db.String(200), nullable=True)  # store title for deleted tasks
+    action = db.Column(db.String(50), nullable=False)  
+    task_id = db.Column(db.Integer, nullable=True) 
+    task_title = db.Column(db.String(200), nullable=True)  
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
 
