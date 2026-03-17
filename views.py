@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, redirect, url_for
 from flask import request
 from task import Task
 from flask_login import login_required, current_user
-from models import db, Task, User, Visit, Waitlist
+from models import db, Task, User, Visit, Waitlist, TaskEvent
 # import datetime
 import datetime
 
@@ -17,6 +17,11 @@ def log_visit(page, user_id):
     db.session.add(visit)
     db.session.commit()
 
+def log_task_event(action, user_id, task_id=None, task_title=None):
+    """Log a task event (create, toggle, delete)."""
+    event = TaskEvent(action=action, task_id=task_id, task_title=task_title, user_id=user_id)
+    db.session.add(event)
+    db.session.commit()
 
 ###############################################################################
 # Routes
@@ -39,18 +44,24 @@ def invitation():
 
     if request.method == 'POST':
         email = request.form['email']
+        waitlist_entry = Waitlist(email=email)
+        db.session.add(waitlist_entry)
+        db.session.commit()
         # Here you would send a verification email and add to waitlist
         print(f"Sending invitation to {email}")
+    
+    log_visit(page='invitation', user_id=current_user.id if current_user.is_authenticated else None)
     return render_template('invitation.html')
 
 
 @main_blueprint.route('/todo', methods=['GET', 'POST'])
 @login_required
 def todo():
+    log_visit(page='todo', user_id=current_user.id)
     return render_template('todo.html')
 
 
-@main_blueprint.route('/dashboard', methods=['GET', 'POST'])
+@main_blueprint.route('/dashboard/', methods=['GET', 'POST'])
 # @login_required
 def dashboard():
     visits = Visit.query.all()
@@ -90,6 +101,8 @@ def api_create_task():
     new_task = Task(title=data['title'], user_id=current_user.id)
     db.session.add(new_task)
     db.session.commit()
+    log_task_event(action='create', user_id=current_user.id, task_id=new_task.id, task_title=new_task.title)
+    
     return {
         "task": new_task.to_dict()
     }, 201
@@ -105,7 +118,7 @@ def api_toggle_task(task_id):
 
     task.toggle()
     db.session.commit()
-
+    log_task_event(action='toggle', user_id=current_user.id, task_id=task.id, task_title=task.title)
     return {"task": task.to_dict()}, 200
 
 
@@ -116,7 +129,7 @@ def remove(task_id):
 
     if task is None:
         return redirect(url_for('main.todo'))
-
+    log_task_event(action='delete', user_id=current_user.id, task_id=task.id, task_title=task.title)   
     db.session.delete(task)
     db.session.commit()
 

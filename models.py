@@ -64,3 +64,15 @@ class Waitlist(db.Model):
 
     def __repr__(self):
         return f"<Waitlist id={self.id} email='{self.email}' timestamp={self.timestamp}>"
+
+
+class TaskEvent(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    action = db.Column(db.String(50), nullable=False)  # 'create', 'toggle', 'delete'
+    task_id = db.Column(db.Integer, nullable=True)  # might be null if task was deleted
+    task_title = db.Column(db.String(200), nullable=True)  # store title for deleted tasks
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+    def __repr__(self):
+        return f"<TaskEvent id={self.id} action='{self.action}' task_id={self.task_id} user_id={self.user_id} timestamp={self.timestamp}>"
