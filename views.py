@@ -6,6 +6,7 @@ from flask_login import login_required, current_user
 from models import db, Task, User, Visit, Waitlist, TaskEvent
 # import datetime
 import datetime
+from sqlalchemy import func
 
 # Create a blueprint
 main_blueprint = Blueprint('main', __name__)
@@ -65,7 +66,13 @@ def todo():
 # @login_required
 def dashboard():
     visits = Visit.query.all()
+    visits_today = Visit.query.filter(func.date(Visit.timestamp) == datetime.date.today()).count()
 
+    today = datetime.date.today()
+    week_begins = today - datetime.timedelta(days=6) 
+    new_users = User.query.filter(func.date(User.time_created) >= week_begins).count()
+    waitlist_signups = Waitlist.query.filter(func.date(Waitlist.timestamp) >= week_begins).count()
+    total_users = db.session.query(func.count(User.id)).scalar() or 0
     chart_week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
     week_notes = [random.randint(0, 15) for _ in range(7)]
@@ -73,14 +80,15 @@ def dashboard():
 
     return render_template('admin.html',
                            date=datetime.datetime.now().strftime("%B %d, %Y"),
-                           total_users=716,     # add real number
-                           new_users=5,         # add real number
-                           visits_today=120,    # add real number
+                           total_users=total_users,     # add real number
+                           new_users=new_users,         # add real number
+                           visits_today=visits_today,    # add real number
                            productivity_change=0.6,   # add real number
                            visits=visits,           # add real value
                            chart_week=chart_week,   # update list to show today as the last day in the chart
                            week_notes=week_notes,   # add real values
-                           two_week_notes=two_week_notes  # add real values
+                           two_week_notes=two_week_notes,  # add real values
+                           waitlist_signups=waitlist_signups
                            )
 
 
