@@ -61,6 +61,11 @@ def todo():
     log_visit(page='todo', user_id=current_user.id)
     return render_template('todo.html')
 
+def today_visit_count(day):
+    return Visit.query.filter(
+        Visit.page == 'index',
+        func.date(Visit.timestamp) == day
+    ).count()
 
 @main_blueprint.route('/dashboard/', methods=['GET', 'POST'])
 # @login_required
@@ -73,7 +78,19 @@ def dashboard():
     new_users = User.query.filter(func.date(User.time_created) >= week_begins).count()
     waitlist_signups = Waitlist.query.filter(func.date(Waitlist.timestamp) >= week_begins).count()
     total_users = db.session.query(func.count(User.id)).scalar() or 0
-    chart_week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+
+    chart_week = []
+    week_visits = []
+    two_week_visits = []
+    previous_week_begins = week_begins - datetime.timedelta(days=7)
+
+    for i in range(7):
+        current_day = week_begins + datetime.timedelta(days=i)
+        previous_day = previous_week_begins + datetime.timedelta(days=i)
+
+        chart_week.append(current_day.strftime("%a"))
+        week_visits.append(today_visit_count(current_day))
+        two_week_visits.append(today_visit_count(previous_day))
 
     week_notes = [random.randint(0, 15) for _ in range(7)]
     two_week_notes = [random.randint(0, 15) for _ in range(7)]
@@ -88,7 +105,9 @@ def dashboard():
                            chart_week=chart_week,   # update list to show today as the last day in the chart
                            week_notes=week_notes,   # add real values
                            two_week_notes=two_week_notes,  # add real values
-                           waitlist_signups=waitlist_signups
+                           waitlist_signups=waitlist_signups,
+                           week_visits=week_visits,
+                           two_week_visits=two_week_visits,
                            )
 
 
