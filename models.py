@@ -10,6 +10,7 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(128), nullable=False)
     tasks = db.relationship('Task', backref='user')
     visits = db.relationship('Visit')  # added visits to user
+    time_created = db.Column(db.DateTime, default=db.func.current_timestamp(), nullable=False)
 
     def set_password(self, password):
         """Hash the password and store it."""

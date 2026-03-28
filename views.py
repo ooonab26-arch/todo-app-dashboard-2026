@@ -6,6 +6,7 @@ from flask_login import login_required, current_user
 from models import db, Task, User, Visit, Waitlist, TaskEvent
 # import datetime
 import datetime
+from sqlalchemy import func
 
 # Create a blueprint
 main_blueprint = Blueprint('main', __name__)
@@ -39,7 +40,7 @@ def index():
 
     return render_template('index.html')
 
-@main_blueprint.route('/invitation', methods=['GET', 'POST'])
+@main_blueprint.route('/invitation/', methods=['GET', 'POST'])
 def invitation():
 
     if request.method == 'POST':
@@ -54,33 +55,80 @@ def invitation():
     return render_template('invitation.html')
 
 
-@main_blueprint.route('/todo', methods=['GET', 'POST'])
+@main_blueprint.route('/todo/', methods=['GET', 'POST'])
 @login_required
 def todo():
     log_visit(page='todo', user_id=current_user.id)
     return render_template('todo.html')
 
+def today_visit_count(day):
+    return Visit.query.filter(
+        Visit.page == 'index',
+        func.date(Visit.timestamp) == day
+    ).count()
 
 @main_blueprint.route('/dashboard/', methods=['GET', 'POST'])
 # @login_required
 def dashboard():
     visits = Visit.query.all()
+    visits_today = Visit.query.filter(func.date(Visit.timestamp) == datetime.date.today()).count()
 
-    chart_week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    today = datetime.date.today()
+    week_begins = today - datetime.timedelta(days=6) 
+    new_users = User.query.filter(func.date(User.time_created) >= week_begins).count()
+    waitlist_signups = Waitlist.query.filter(func.date(Waitlist.timestamp) >= week_begins).count()
+    total_users = db.session.query(func.count(User.id)).scalar() or 0
+
+    chart_week = []
+    week_visits = []
+    two_week_visits = []
+    previous_week_begins = week_begins - datetime.timedelta(days=7)
+    error_logs = Visit.query.filter(Visit.page.in_(['error-logging-in', 'incorrect-password','invalid-password', 'invalid-email' ])).limit(15).all()
+
+    for i in range(7):
+        current_day = week_begins + datetime.timedelta(days=i)
+        previous_day = previous_week_begins + datetime.timedelta(days=i)
+
+        chart_week.append(current_day.strftime("%a"))
+        week_visits.append(today_visit_count(current_day))
+        two_week_visits.append(today_visit_count(previous_day))
 
     week_notes = [random.randint(0, 15) for _ in range(7)]
     two_week_notes = [random.randint(0, 15) for _ in range(7)]
 
+    total_visits = db.session.query(func.count(Visit.id)).scalar() or 0
+    total_tasks = db.session.query(func.count(Task.id)).scalar() or 0
+    
+    latest_visits = Visit.query.order_by(Visit.timestamp.desc()).limit(15).all()
+
+    total_users_by_page = db.session.query(Visit.page,func.count(Visit.id)).filter(func.date(Visit.timestamp) == datetime.date.today()).group_by(Visit.page).all()
+    users_by_page_x = [row[0] for row in total_users_by_page ]
+    users_by_page_y = [row[1] for row in total_users_by_page ]
+
+    new_users_info = User.query.filter(func.date(User.time_created) >= week_begins).order_by(User.time_created.desc()).limit(10).all()
+    waitlist_signups_info = Waitlist.query.filter(func.date(Waitlist.timestamp) >= week_begins).order_by(Waitlist.timestamp.desc()).limit(10).all()
+
     return render_template('admin.html',
                            date=datetime.datetime.now().strftime("%B %d, %Y"),
-                           total_users=716,     # add real number
-                           new_users=5,         # add real number
-                           visits_today=120,    # add real number
+                           total_users=total_users,     # add real number
+                           new_users=new_users,         # add real number
+                           visits_today=visits_today,    # add real number
                            productivity_change=0.6,   # add real number
                            visits=visits,           # add real value
                            chart_week=chart_week,   # update list to show today as the last day in the chart
                            week_notes=week_notes,   # add real values
-                           two_week_notes=two_week_notes  # add real values
+                           two_week_notes=two_week_notes,  # add real values
+                           waitlist_signups=waitlist_signups,
+                           week_visits=week_visits,
+                           two_week_visits=two_week_visits,
+                           total_visits=total_visits,
+                           total_tasks=total_tasks,
+                           latest_visits=latest_visits,
+                           error_logs = error_logs,
+                           users_by_page_x=users_by_page_x,
+                           users_by_page_y=users_by_page_y,
+                           new_users_info=new_users_info,
+                           waitlist_signups_info=waitlist_signups_info
                            )
 
 
