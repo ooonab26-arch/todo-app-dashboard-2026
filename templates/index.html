@@ -1,0 +1,693 @@
+<!--
+=========================================================
+* Argon Dashboard 2 - v2.0.4
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/x-icon" href="static/favicon-16x16.png">
+  <title>
+    iPlan-It | Home
+  </title>
+  <!--     Fonts and icons     -->
+  <link type= "text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link type= "text/css" href="{{ url_for('static', filename='CSS/nucleo-icons.css') }}" rel="stylesheet" />
+  <link type= "text/css" href="{{ url_for('static', filename='CSS/nucleo-svg.css') }}" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
+  <!-- <link href="{{ url_for('static', filename='CSS/nucleo-svg.css') }}" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.min.css') }}">
+  <!-- CSS Files -->
+  <link id="pagestyle" type= "text/css" href="{{ url_for('static', filename='CSS/argon-dashboard.css') }}" rel="stylesheet" />
+
+
+</head>
+
+<body class="">
+  <!-- flash message -->
+  <!-- {% with messages = get_flashed_messages(with_categories=true) %} 
+  {% if messages %} 
+      {% for category, message in messages %} 
+          {% if category == 'error' %}
+              <div class="alert alert-warning alter-dismissable fade show" role="alert">
+              {{ message }}
+              </div>
+          {% else %}
+              <div class="alert alert-success alter-dismissable fade show" role="alert">
+              {{ message }}
+              </div>
+          {% endif %} 
+      {% endfor %} 
+  {% endif %} 
+{% endwith %} -->
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
+    <div class="container">
+      <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 text-white" href="/index">
+        🌎 iPlan-It
+      </a>
+      <!-- <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon mt-2">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </span>
+      </button> -->
+      <!-- <div class="collapse navbar-collapse" id="navigation"> -->
+        <ul class="navbar-nav mx-auto">
+          <!-- <li class="nav-item">
+            <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" href="/dashboard">
+              <i class="fa fa-chart-pie opacity-6  me-1"></i>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link me-2" href="/">
+              <i class="fa fa-user opacity-6  me-1"></i>
+              Profile
+            </a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link me-2" href="/sign-up">
+              <i class="fas fa-user-circle opacity-6  me-1"></i>
+              Sign Up
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link me-2" href="/login-g">
+              <i class="fa fa-key opacity-6  me-1"></i>
+              Sign In
+            </a>
+          </li>
+        </ul>
+        <!-- <ul class="navbar-nav d-lg-block d-none">
+          <li class="nav-item">
+            <a href="https://www.creative-tim.com/product/argon-dashboard" class="btn btn-sm mb-0 me-1 bg-gradient-light">Free Download</a>
+          </li>
+        </ul> -->
+      <!-- </div> -->
+    </div>
+  </nav>
+  <!-- End Navbar -->
+  <main class="main-content  mt-0">
+    <!-- Photo by <a href="https://unsplash.com/@mattragland?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Matt Ragland</a> on <a href="https://unsplash.com/photos/02z1I7gv4ao?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+   -->
+
+    <div class="page-header align-items-start min-vh-40 pt-5 pb-11 m-3 border-radius-lg" >
+      
+      <video autoplay muted loop style="min-width: 100%; min-height: 100%; z-index: -1; top: 0; left:0; position:absolute; padding-left: 0%;">
+        <!-- <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" /> -->
+        <!-- <source src="{{ url_for('static', filename='pexels_videos_2330728 (540p).mp4') }}" type="video/mp4" /> -->
+        <source src="{{ url_for('static', filename='pexels_videos_1448735 (540p).mp4') }}" type="video/mp4" />
+        <!-- <p class="text-secondary text-sm">
+          Video by Ruvim Miksanskiy: https://www.pexels.com/video/video-of-forest-1448735/
+        </p> -->
+      </video>
+
+      <span class="mask bg-gradient-dark opacity-6"></span>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 text-center mx-auto">
+            <h1 class="text-white mb-2 mt-5">🌎 iPlan-It</h1>
+            <p class="text-lead text-white">An Out of this World, Science-Based, Anxiety-free To-do App!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n6 mt-md-n7 mt-n6 ">
+
+        <div class="col-xl-4 col-lg-4 col-md-4 h-100">
+          <div class="overflow-hidden h-100 p-0 ">
+
+              <div class="carousel-item h-100 active align-items-center vertical-center">
+                <h3 class="text-black mb-2 mt-9">To-do list + Calendar ✔️</h3>
+            <p class="text-lead text-black">You don't have to choose between a to-do list and a calendar; you can use both simultaneously! </p>
+
+              </div>
+          </div>
+        </div>
+
+
+        <div class="col-xl-8 col-lg-8 col-md-8 h-100 justify-content-end">
+          <div class="card card-carousel overflow-hidden h-100 p-0">
+            
+              <div class="carousel-item h-100 active" style="background-image: url('static/Plan-it_Schedule.gif'); height: 100%; background-size: cover; background-position: center; background-repeat: no-repeat;">
+                
+                <div class=" mt-1">
+                  <p class=" ms-2" style="color: aliceblue; height: 450px;"></a></p>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row mt-lg-8 mt-md-7 mt-8 ">
+
+        <div class="col-xl-7 col-lg-7 col-md-7 h-100 justify-content-end">
+          <div class="card z-index-2 h-100">
+            <div class="card-header pb-0 pt-3 bg-transparent">
+              <h6 class="text-capitalize">Productivity overview</h6>
+              <p class="text-sm mb-0">
+                <i class="fa fa-arrow-up text-success"></i>
+                <span class="font-weight-bold">12% more</span> than last week
+              </p>
+            </div>
+            <div class="card-body p-3">
+              <div class="chart">
+                <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="col-xl-4 col-lg-4 col-md-4 h-100">
+          <div class="overflow-hidden h-100 p-0 ">
+
+              <div class="carousel-item h-100 active align-items-center vertical-center">
+                <h3 class="text-black mb-2 mt-4">Track Productivity 🚀</h3>
+            <p class="text-lead text-black">We help you track and find your best time management style to maximize your productivity!</p>
+
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row mt-lg-8 mt-md-7 mt-8 ">
+
+        <div class="col-xl-4 col-lg-4 col-md-4 h-100">
+          <div class="overflow-hidden h-100 p-0 ">
+
+              <div class="carousel-item h-100 active align-items-center vertical-center">
+                <h3 class="text-black mb-2 mt-6">AI for Wellbeing 🦾</h3>
+            <p class="text-lead text-black">We use AI to help you track and improve your wellbeing, because work is just one aspect of your life.
+              <br><br>
+              Your tasks are automatically tagged to help you track and improve your intellectual, occupational, physical, and social wellbeing.
+            </p>
+
+              </div>
+          </div>
+        </div>
+
+
+        <div class="col-xl-8 col-lg-8 col-md-8 h-100 justify-content-end">
+          <div class="col-lg-12 mb-lg-0 mb-4">
+            <div class="card z-index-2 h-100">
+              <div class="card-header pb-0 p-3">
+                <div class="d-flex justify-content-between">
+                  <h6 class="mb-3">7-day Wellbeing</h6>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center ">
+                  <tbody>
+                    <tr>
+                      <td class="w-30">
+                        <div class="d-flex px-2 py-1 align-items-center">
+                          <div>
+                            <i class="bi bi-mortarboard-fill"></i>
+                            
+                          </div>
+                          <div class="ms-4">
+                            <p class="text-xs font-weight-bold mb-0">Intellectual:</p>
+                            <h6 class="text-sm mb-0">Expand knowledge</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <p class="text-xs font-weight-bold mb-0">Tags:</p>
+                          <h6 class="text-sm mb-0">#learn #study</h6>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <p class="text-xs font-weight-bold mb-0">Time:</p>
+                          <h6 class="text-sm mb-0">12 hours</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle text-sm">
+                        <div class="col text-center">
+                          <p class="text-xs font-weight-bold mb-0">Percentage:</p>
+                          <h6 class="text-sm mb-0">27%</h6>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="w-30">
+                        <div class="d-flex px-2 py-1 align-items-center">
+                          <div>
+                            <i class="bi bi-briefcase-fill"></i>
+                          </div>
+                          <div class="ms-4">
+                            <p class="text-xs font-weight-bold mb-0">Occupational:</p>
+                            <h6 class="text-sm mb-0">Job or profession</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <!-- <p class="text-xs font-weight-bold mb-0">Tags:</p> -->
+                          <h6 class="text-sm mb-0">#work #job</h6>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <!-- <p class="text-xs font-weight-bold mb-0">Time:</p> -->
+                          <h6 class="text-sm mb-0">23 hours</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle text-sm">
+                        <div class="col text-center">
+                          <!-- <p class="text-xs font-weight-bold mb-0">The week before:</p> -->
+                          <h6 class="text-sm mb-0">52%</h6>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="w-30">
+                        <div class="d-flex px-2 py-1 align-items-center">
+                          <div>
+                            <i class="bi bi-heart-pulse-fill"></i>
+                          </div>
+                          <div class="ms-4">
+                            <p class="text-xs font-weight-bold mb-0">Physical:</p>
+                            <h6 class="text-sm mb-0">Exercise and nutrition</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <!-- <p class="text-xs font-weight-bold mb-0">Tags:</p> -->
+                          <h6 class="text-sm mb-0">#health #workout</h6>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <!-- <p class="text-xs font-weight-bold mb-0">Time:</p> -->
+                          <h6 class="text-sm mb-0">4 hours</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle text-sm">
+                        <div class="col text-center">
+                          <!-- <p class="text-xs font-weight-bold mb-0">The week before:</p> -->
+                          <h6 class="text-sm mb-0">9%</h6>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="w-30">
+                        <div class="d-flex px-2 py-1 align-items-center">
+                          <div>
+                            <i class="bi bi-people-fill"></i>
+                          </div>
+                          <div class="ms-4">
+                            <p class="text-xs font-weight-bold mb-0">Social:</p>
+                            <h6 class="text-sm mb-0">Interact with community</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <!-- <p class="text-xs font-weight-bold mb-0">Tags:</p> -->
+                          <h6 class="text-sm mb-0">#social #fun</h6>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <!-- <p class="text-xs font-weight-bold mb-0">Time:</p> -->
+                          <h6 class="text-sm mb-0">5 hours</h6>
+                        </div>
+                      </td>
+                      <td class="align-middle text-sm">
+                        <div class="col text-center">
+                          <!-- <p class="text-xs font-weight-bold mb-0">The week before:</p> -->
+                          <h6 class="text-sm mb-0">11%</h6>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row mt-lg-8 mt-md-7 mt-8 ">
+
+        <div class="col-xl-7 col-lg-7 col-md-7 h-100 justify-content-end">
+          <div class="card card-carousel overflow-hidden h-100 p-0">
+            
+            <div class="carousel-item h-100 active" style="background-image: url('static/chris-curry-UJij-wz7w88-unsplash.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                
+                <div class=" mt-1">
+                  <p class=" ms-2" style="color: aliceblue; height: 450px;"></a></p>
+                </div>
+              </div>
+
+          </div>
+        </div>
+
+        
+        <div class="col-xl-4 col-lg-4 col-md-4 h-100">
+          <div class="overflow-hidden h-100 p-0 ">
+
+              <div class="carousel-item h-100 active align-items-center vertical-center">
+                <h3 class="text-black mb-2 mt-4">Daily Motivation 🤗</h3>
+                <p class="text-lead text-black">We partnered with Unsplash to keep you motivated!
+                  <br><br>
+                  Get a new motivational picture every time you visit your dashboard.
+                </p>
+
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="row mt-lg-6 mt-md-6 mt-6 justify-content-center">
+
+        <div class="col-xl-6 col-lg-6 col-md-6 h-100">
+          <div class="overflow-hidden h-100 p-0 ">
+
+              <div class="carousel-item h-100 active align-items-center vertical-center">
+                <h3 class="text-black mb-2 mt-6 text-center">Always Free to Students/Educators! ❤️</h3>
+                <p class="text-lead text-black text-center">Students and educators can sign-up with a <b>.edu</b> email to get iPlan-It for free.</p>
+                <p class="text-lead text-black text-center">Not a student and you want to use iPlan-It for free? <br>
+                  We get it, inflation and stuff, your first month is on us! 🎉</p>
+                  <p class="text-lead text-black text-center">After that iPlan-It is $5/month or $50/year.</p>
+                </p>
+
+                <!-- A gratitude-based Business model means that you can support Plan-it if you like it, but you don't have to -->
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- <div class="container">
+      <div class="row mt-8 justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+          <div class="card z-index-0">
+            <div class="card-header text-center pt-4">
+              <h5><b>One Day</b> or <b>Day One</b>? You decide.</h5>
+            </div>
+            <div class="card-body pt-0 mt-0">
+             
+              <form action="/login-g">
+                <div class="text-center">
+                  <button type="submit" class="btn bg-gradient-primary w-100 my-2 mb-2">
+                    <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
+                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g transform="translate(3.000000, 2.000000)" fill-rule="nonzero">
+                          <path d="M57.8123233,30.1515267 C57.8123233,27.7263183 57.6155321,25.9565533 57.1896408,24.1212666 L29.4960833,24.1212666 L29.4960833,35.0674653 L45.7515771,35.0674653 C45.4239683,37.7877475 43.6542033,41.8844383 39.7213169,44.6372555 L39.6661883,45.0037254 L48.4223791,51.7870338 L49.0290201,51.8475849 C54.6004021,46.7020943 57.8123233,39.1313952 57.8123233,30.1515267" fill="#4285F4"></path>
+                          <path d="M29.4960833,58.9921667 C37.4599129,58.9921667 44.1456164,56.3701671 49.0290201,51.8475849 L39.7213169,44.6372555 C37.2305867,46.3742596 33.887622,47.5868638 29.4960833,47.5868638 C21.6960582,47.5868638 15.0758763,42.4415991 12.7159637,35.3297782 L12.3700541,35.3591501 L3.26524241,42.4054492 L3.14617358,42.736447 C7.9965904,52.3717589 17.959737,58.9921667 29.4960833,58.9921667" fill="#34A853"></path>
+                          <path d="M12.7159637,35.3297782 C12.0932812,33.4944915 11.7329116,31.5279353 11.7329116,29.4960833 C11.7329116,27.4640054 12.0932812,25.4976752 12.6832029,23.6623884 L12.6667095,23.2715173 L3.44779955,16.1120237 L3.14617358,16.2554937 C1.14708246,20.2539019 0,24.7439491 0,29.4960833 C0,34.2482175 1.14708246,38.7380388 3.14617358,42.736447 L12.7159637,35.3297782" fill="#FBBC05"></path>
+                          <path d="M29.4960833,11.4050769 C35.0347044,11.4050769 38.7707997,13.7975244 40.9011602,15.7968415 L49.2255853,7.66898166 C44.1130815,2.91684746 37.4599129,0 29.4960833,0 C17.959737,0 7.9965904,6.62018183 3.14617358,16.2554937 L12.6832029,23.6623884 C15.0758763,16.5505675 21.6960582,11.4050769 29.4960833,11.4050769" fill="#EB4335"></path>
+                        </g>
+                      </g>
+                    </svg> &nbsp;
+                    Sign in with Google</button>
+                </div>
+              </form>
+
+              <form action="/try">
+                <div class="text-center">
+                  <button type="submit" class="btn bg-gradient-success w-100 text-white my-2 mb-2">
+                    Try First, Sign-up Later</button>
+                </div>
+                <p class="text-sm mt-3 mb-0">Already have an account? <a href="/login-g" class="text-dark font-weight-bolder">Sign in</a></p>
+              </form>
+
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="container">
+      <div class="row mt-7 justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+          <div class="card z-index-0">
+            <div class="card-header text-center pt-4">
+              <div class="card-header text-center pt-4">
+                <h4><b>One Day</b> or <b>Day One</b>? <br> You decide.</h4>
+              </div>
+              <!-- <h5>Sign up with</h5> -->
+
+            </div>
+            <div class="row px-xl-5 px-sm-4 px-3">
+              <div class="col-12 me-auto px-1 pb-2">
+                <!-- <form action="/login-g"> -->
+                <form action="/invitation">
+                  <div class="text-center">
+                    <!-- <button type="submit" class="btn bg-gradient-primary w-100 my-2 mb-2">
+                      <svg width="24px" height="32px" viewBox="0 0 64 64" version="1.1">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <g transform="translate(3.000000, 2.000000)" fill-rule="nonzero">
+                            <path d="M57.8123233,30.1515267 C57.8123233,27.7263183 57.6155321,25.9565533 57.1896408,24.1212666 L29.4960833,24.1212666 L29.4960833,35.0674653 L45.7515771,35.0674653 C45.4239683,37.7877475 43.6542033,41.8844383 39.7213169,44.6372555 L39.6661883,45.0037254 L48.4223791,51.7870338 L49.0290201,51.8475849 C54.6004021,46.7020943 57.8123233,39.1313952 57.8123233,30.1515267" fill="#4285F4"></path>
+                            <path d="M29.4960833,58.9921667 C37.4599129,58.9921667 44.1456164,56.3701671 49.0290201,51.8475849 L39.7213169,44.6372555 C37.2305867,46.3742596 33.887622,47.5868638 29.4960833,47.5868638 C21.6960582,47.5868638 15.0758763,42.4415991 12.7159637,35.3297782 L12.3700541,35.3591501 L3.26524241,42.4054492 L3.14617358,42.736447 C7.9965904,52.3717589 17.959737,58.9921667 29.4960833,58.9921667" fill="#34A853"></path>
+                            <path d="M12.7159637,35.3297782 C12.0932812,33.4944915 11.7329116,31.5279353 11.7329116,29.4960833 C11.7329116,27.4640054 12.0932812,25.4976752 12.6832029,23.6623884 L12.6667095,23.2715173 L3.44779955,16.1120237 L3.14617358,16.2554937 C1.14708246,20.2539019 0,24.7439491 0,29.4960833 C0,34.2482175 1.14708246,38.7380388 3.14617358,42.736447 L12.7159637,35.3297782" fill="#FBBC05"></path>
+                            <path d="M29.4960833,11.4050769 C35.0347044,11.4050769 38.7707997,13.7975244 40.9011602,15.7968415 L49.2255853,7.66898166 C44.1130815,2.91684746 37.4599129,0 29.4960833,0 C17.959737,0 7.9965904,6.62018183 3.14617358,16.2554937 L12.6832029,23.6623884 C15.0758763,16.5505675 21.6960582,11.4050769 29.4960833,11.4050769" fill="#EB4335"></path>
+                          </g>
+                        </g>
+                      </svg> &nbsp;
+                      Google</button> -->
+                      <button type="submit" class="btn bg-gradient-primary w-100 my-2 mb-2">
+                        
+                        Join the Waitlist!</button>
+                  </div>
+                </form>
+              </div>
+              <!-- <div class="mt-2 position-relative text-center">
+                <p class="text-sm font-weight-bold mb-2 text-secondary text-border d-inline z-index-2 bg-white px-3">
+                  or
+                </p>
+              </div> -->
+            </div>
+            <!-- <div class="card-body">
+              <form role="form">
+                <div class="mb-3">
+                  <input type="text" class="form-control" placeholder="Name" aria-label="Name">
+                </div>
+                <div class="mb-3">
+                  <input type="email" class="form-control" placeholder="Email" aria-label="Email">
+                </div>
+                <div class="mb-3">
+                  <input type="password" class="form-control" placeholder="Password" aria-label="Password">
+                </div>
+                <div class="form-check form-check-info text-start">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                  <label class="form-check-label" for="flexCheckDefault">
+                    I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
+                  </label>
+                  <label class="form-check-label" for="flexCheckDefault"></label>
+                    By continuing, you are indicating that you accept our Terms of Service and Privacy Policy.
+                  </label>
+                </div>
+                <div class="text-center">
+                  <button type="button" onclick="location.href='/invitation';" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+                </div>
+                <p class="text-sm mt-3 mb-0">Already have an account? <a href="javascript:;" class="text-dark font-weight-bolder">Sign in</a></p>
+              </form>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- -------- START FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+  <footer class="footer py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mb-4 mx-auto text-center">
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            Learn
+          </a>
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            About
+          </a>
+          <a href="https://github.com/nalmadi/iPlan-it/issues/new" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            Feedback
+          </a>
+          <a href="license" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            License
+          </a>
+          <a href="https://nalmadi.github.io/" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            Blog
+          </a>
+          <!-- <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            Ambassador
+          </a> -->
+        </div>
+        <!-- <div class="col-lg-8 mx-auto text-center mb-4 mt-2">
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+            <span class="text-lg fab fa-dribbble"></span>
+          </a>
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+            <span class="text-lg fab fa-twitter"></span>
+          </a>
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+            <span class="text-lg fab fa-instagram"></span>
+          </a>
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+            <span class="text-lg fab fa-pinterest"></span>
+          </a>
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+            <span class="text-lg fab fa-github"></span>
+          </a>
+        </div> -->
+      </div>
+      <div class="row">
+        <div class="col-8 mx-auto text-center mt-1">
+          © <script>
+            document.write(new Date().getFullYear())
+          </script>,
+          made with <i class="fa fa-heart"></i> by
+          <a href="https://www.linkedin.com/in/nasermadi/" class="font-weight-bold" target="_blank">Naser Al Madi</a>.
+          <!-- <p class="text-secondary text-sm">
+            Video by Ruvim Miksanskiy: https://www.pexels.com/video/video-of-forest-1448735/
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
+  <!--   Core JS Files   -->
+  <script src="{{ url_for('static', filename='js/core/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/core/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/plugins/perfect-scrollbar.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/plugins/smooth-scrollbar.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/plugins/chartjs.min.js') }}"></script>
+  <script>
+    var ctx1 = document.getElementById("chart-line").getContext("2d");
+
+    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+    gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+    gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+
+    new Chart(ctx1, {
+      type: "line",
+      data: {
+        labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        datasets: [{
+          label: "This Week",
+          tension: 0.2,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#2d89ce",
+          backgroundColor: "#2d89ce",
+          borderWidth: 4,
+          fill: false,
+          data: [2, 7, 11, 8, 11, 10, 8],
+          maxBarThickness: 6
+        },
+        {
+          label: "Last Week",
+          tension: 0.2,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#2d8999",
+          backgroundColor: "#2d8999",
+          borderWidth: 1,
+          fill: false,
+          data: [6, 10, 5, 4, 9, 12, 4],
+          maxBarThickness: 6
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: true,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#fbfbfb',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#ccc',
+              padding: 20,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+  </script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+</body>
+
+</html>

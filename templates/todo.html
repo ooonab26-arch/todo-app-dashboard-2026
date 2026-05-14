@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h3>To-Do List</h3>
+    <form id="task-form" method="POST">
+        <div class="input-section">
+        <input type="text" id="new-task" name="task-text" placeholder="Add a new task..." />
+        <button id="add-task-btn">Add Task</button>
+        </div>
+    </form>
+    
+    <ul id="task-list">
+    </ul>
+  </div>
+
+  <script src="{{ url_for('static', filename='todo.js') }}"></script>
+</body>
+</html>

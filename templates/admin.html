@@ -1,0 +1,873 @@
+<!--
+=========================================================
+* Argon Dashboard 2 - v2.0.4
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/x-icon" href="static/favicon-16x16.png">
+  <title>
+    iPlan-It | Admin Dashboard
+  </title>
+  <!--     Fonts and icons     -->
+  <link type= "text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link type= "text/css" href="{{ url_for('static', filename='CSS/nucleo-icons.css') }}" rel="stylesheet" />
+  <link type= "text/css" href="{{ url_for('static', filename='CSS/nucleo-svg.css') }}" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{{ url_for('static', filename='CSS/nucleo-svg.css') }}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- CSS Files -->
+  <link id="pagestyle" type= "text/css" href="{{ url_for('static', filename='CSS/argon-dashboard.css') }}" rel="stylesheet" />
+
+</head>
+
+<body class="g-sidenav-show   bg-gray-100">
+  <div class="min-height-300 bg-secondary position-absolute w-100"></div>
+  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0  text-center" href="/dashboard">
+        
+        
+        <span class="fs-4 font-weight-bold">🌎 iPlan-It</span>
+      </a>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="/dashboard">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/schedule">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-bullet-list-67 text-warning text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Schedule</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/week">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-calendar-grid-58 text-success text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Week</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/inbox">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-app text-info text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Inbox</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/finished">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-check-bold text-danger text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Finished</span>
+          </a>
+        </li>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/profile">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/logout">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Sign Out</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    
+  </aside>
+  <main class="main-content position-relative border-radius-lg ">
+    <!-- test Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl ">
+      <div class="container-fluid py-1 px-3">
+        <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+          <li class="breadcrumb-item text-sm align-items-center text-white" aria-current="page">{{date}}</li>
+        </ol>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+          <ul class="nav navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center me-2 text-white active" aria-current="page" href="/dashboard">
+                <i class="ni ni-tv-2 opacity-6 me-1"></i>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center me-2 text-white" aria-current="page" href="/schedule">
+                <i class="ni ni-bullet-list-67 opacity-6 me-1"></i>
+                Schedule
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center me-2 text-white" aria-current="page" href="/week">
+                <i class="ni ni-calendar-grid-58 opacity-6 me-1"></i>
+                week
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center me-2 text-white" aria-current="page" href="/inbox">
+                <i class="ni ni-app opacity-6 me-1"></i>
+                Inbox
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center me-2 text-white" aria-current="page" href="/finished">
+                <i class="ni ni-check-bold opacity-6 me-1"></i>
+                Finished
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-2 text-white" href="/profile">
+                <i class="fa fa-user opacity-6  me-1"></i>
+                Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link me-2 text-white" href="/logout">
+                <i class="ni ni-single-copy-04 opacity-6  me-1"></i>
+                Sign Out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- end of test Navbar -->
+    <div class="container-fluid py-6">
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Visits</p>
+                    <h5 class="font-weight-bolder">
+                      {{ visits_today }}
+                    </h5>
+                    <p class="mb-0">
+
+                      yesterday
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-bullet-list-67 text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">New Users</p>
+                    <h5 class="font-weight-bolder">
+                      {{ new_users }}
+                    </h5>
+                    <p class="mb-0">
+                      this week
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                    <i class="ni ni-check-bold text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Waitlist</p>
+                    <h5 class="font-weight-bolder">
+                      {{ waitlist_signups}}
+                    </h5>
+                    <p class="mb-0">
+
+                      this week
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <i class="ni ni-satisfied text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Users</p>
+                    <h5 class="font-weight-bolder">
+                      {{ total_users }}
+                    </h5>
+                    <p class="mb-0">
+                      in total
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-favourite-28 text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mt-4">
+        <div class="col-lg-6 mb-lg-0 mb-4">
+          <div class="card z-index-2 h-100">
+            <div class="card-header pb-0 pt-3 bg-transparent">
+              <h6 class="text-capitalize">Index Page Visits</h6>
+              <p class="text-sm mb-0">
+                {% if productivity_change == 0 %}
+                <span class="text-success text-sm font-weight-bolder">same as</span> the week before
+              {% elif productivity_change > 0 %}
+                <i class="fa fa-arrow-up text-success"></i>
+                <span class="text-success text-sm font-weight-bolder">+{{productivity_change}}% more</span> than the week before
+              {% else %}
+                <i class="fa fa-arrow-down text-danger"></i>
+                <span class="text-danger text-sm font-weight-bolder">{{productivity_change * -1}}% less</span> than the week before
+              {% endif %} 
+              </p>
+            </div>
+            <div class="card-body p-3">
+              <div class="chart">
+                <canvas id="chart-line2" class="chart-canvas" height="300"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 mb-lg-0 mb-4">
+          <div class="card z-index-2 h-100">
+            <div class="card-header pb-0 pt-3 bg-transparent">
+              <h6 class="text-capitalize">New Users</h6>
+              <p class="text-sm mb-0">
+                {% if productivity_change == 0 %}
+                <span class="text-success text-sm font-weight-bolder">same as</span> the week before
+              {% elif productivity_change > 0 %}
+                <i class="fa fa-arrow-up text-success"></i>
+                <span class="text-success text-sm font-weight-bolder">+{{productivity_change}}% more</span> than the week before
+              {% else %}
+                <i class="fa fa-arrow-down text-danger"></i>
+                <span class="text-danger text-sm font-weight-bolder">{{productivity_change * -1}}% less</span> than the week before
+              {% endif %} 
+              </p>
+            </div>
+            <div class="card-body p-3">
+              <div class="chart">
+                <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-4">
+        <div class="col-lg-6 mb-lg-0 mb-4">
+          <div class="card z-index-2 h-100">
+            <div class="card-header pb-0 pt-3 bg-transparent">
+              <h6 class="text-capitalize">Database Stats</h6>
+              <!-- <p class="text-sm mb-0">
+              {% if productivity_change == 0 %}
+                <span class="text-success text-sm font-weight-bolder">same as</span> the week before
+              {% elif productivity_change > 0 %}
+                <i class="fa fa-arrow-up text-success"></i>
+                <span class="text-success text-sm font-weight-bolder">+{{productivity_change}}% more</span> than the week before
+              {% else %}
+                <i class="fa fa-arrow-down text-danger"></i>
+                <span class="text-danger text-sm font-weight-bolder">{{productivity_change * -1}}% less</span> than the week before
+              {% endif %} 
+              </p> -->
+
+            </div>
+            <div class="card-body p-3">
+              <!-- <div class="chart"> -->
+                <!-- <canvas id="chart-line2" class="chart-canvas" height="300"></canvas> -->
+              <div class="row">
+                <div class="col-6">  
+                  <span>Database has {{ total_visits }} visits</span>
+                  <br>
+                  <span>Database has {{ total_users }} Users</span>
+                  <br>
+                  <span>Database has {{ total_tasks }} Tasks</span>
+
+                  
+
+                  <br><br>
+                  <h6 class="text-capitalize">Recent visits</h6>
+                  <p class="text-sm mb-0">
+                    {% for visit in visits %}
+                    <span>{{ visit.timestamp.strftime('%Y-%m-%d %H:%M') }} : {{ visit.page }}</span>
+                    <br>
+                    {% endfor %}
+                  </p>
+                </div>
+                <div class="col-6">  
+                  <h6 class="text-capitalize">Recent Errors</h6>
+                  <p class="text-sm mb-0 text-danger">
+                    {% for error in error_logs %}
+                      <span>
+                        <strong>{{ error.timestamp.strftime('%H:%M') }}</strong> : {{ error.page }}
+                      </span>
+                      <br>
+                    {% else %}
+                      <span class="text-muted">No errors recorded recently.</span>
+                    {% endfor %}
+                  </p>
+
+                  
+
+                  <br>
+                  <h6 class="text-capitalize">Try visits</h6>
+                  <p class="text-sm mb-0">
+                    {% for visit in visits %}
+                      {% if visit.page == "try" %}
+                      <span>{{ visit.date }} : {{ visit.page }}</span>
+                      <br>
+                      {% endif %}
+                    {% endfor %}
+                  </p>
+                </div>
+
+              </div>
+
+
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 mb-lg-0 mb-4">
+          <div class="card z-index-2 h-100">
+            <div class="card-header pb-0 pt-3 bg-transparent">
+              <h6 class="text-capitalize">Page Visits Today</h6>
+              <!-- <p class="text-sm mb-0">
+                {% if productivity_change == 0 %}
+                <span class="text-success text-sm font-weight-bolder">same as</span> the week before
+              {% elif productivity_change > 0 %}
+                <i class="fa fa-arrow-up text-success"></i>
+                <span class="text-success text-sm font-weight-bolder">+{{productivity_change}}% more</span> than the week before
+              {% else %}
+                <i class="fa fa-arrow-down text-danger"></i>
+                <span class="text-danger text-sm font-weight-bolder">{{productivity_change * -1}}% less</span> than the week before
+              {% endif %}
+              </p> -->
+            </div>
+            <div class="card-body p-3">
+              <div class="chart">
+                <canvas id="chart-bar-visits" class="chart-canvas" height="300"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>     
+
+
+
+      
+      <div class="row">
+        <div class="col-md-4 mt-4">
+          <div class="card">
+            <div class="card-header pb-0 px-3">
+              <h6 class="mb-0">New User Information</h6>
+            </div>
+            <div class="card-body pt-4 p-3">
+              <ul class="list-group">
+                {% for user in new_users_all: %}
+                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                  <div class="d-flex flex-column">
+                    <h6 class="mb-3 text-sm">{{ user.name }}</h6>
+                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-sm-2 font-weight-bold"> {{ user.email }}</span></span>
+                    <span class="text-xs">Joined on: <span class="text-dark ms-sm-2 font-weight-bold">{{ user.date_created }}</span></span>
+                    <span class="text-xs">Total tasks: <span class="text-dark ms-sm-2 font-weight-bold">{{ user.tasks|length }}</span></span>
+                  </div>
+                  <div class="ms-auto text-end">
+                    {% if user.id != 1 %}
+                    <a class="btn btn-link text-danger text-gradient px-3 mb-0"  onclick="deleteUser('{{ user.name }}' , {{ user.id }})"><i class="far fa-trash-alt me-2"></i>Delete</a>
+                    <!-- <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="/delete_user/{{ user.id }}"><i class="far fa-trash-alt me-2"></i>Delete</a> -->
+                    <!-- <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a> -->
+                    {% endif %}
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mt-4">
+          <div class="card">
+            <div class="card-header pb-0 px-3">
+              <h6 class="mb-0">Waitlist Information</h6>
+            </div>
+            <div class="card-body pt-4 p-3">
+              <ul class="list-group">
+                {% for user in waitlist_all %}
+                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                  <div class="d-flex flex-column">
+                    <span>{{ user.email }}  </span>
+                    <span class="text-xs">Joined on: <span class="text-dark ms-sm-2 font-weight-bold">{{ user.timestamp.strftime('%Y-%m-%d %H:%M') }}</span></span>
+                  </div>
+                  <div class="ms-auto text-end">
+                    
+                    <!-- <a class="btn btn-link text-danger text-gradient px-3 mb-0"  onclick="deleteUser('{{ user.name }}' , {{ user.id }})"><i class="far fa-trash-alt me-2"></i>Delete</a> -->
+                    <a class="btn btn-link text-success text-gradient px-3 mb-0" href="/waitlist_add/{{ user.id }}"><i class="far fa-trash-alt me-2"></i>Add</a> 
+                    <!-- <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>  -->
+                    
+                  </div>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mt-4">
+
+          <div class="col-md-12 mt-0">
+            <div class="card">
+              <div class="card-header pb-0 px-3">
+                <h6 class="mb-0">Backup</h6>
+              </div>
+              <div class="card-body pt-4 p-3">
+                <ul class="list-group">
+                  <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                    <div class="d-flex flex-column">
+                      <h6 class="mb-3 text-sm">Back up all data</h6>
+                      <span class="mb-2 text-xs">Date: <span class="text-dark ms-sm-2 font-weight-bold">{{ date }}</span></span>
+                      <span class="mb-2 text-xs">Format: <span class="text-dark font-weight-bold ms-sm-2">CSV</span></span>
+                    </div>
+                    <div class="ms-auto text-end">
+                      <a class="btn btn-link text-dark px-3 mb-0" href="/backup"><i class="ni ni-cloud-download-95 text-dark me-2" aria-hidden="true"></i>Download</a>
+                    </div>
+                  </li>
+                  <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+                      <div class="d-flex flex-column">
+                        <form method="POST" action="/upload_db" enctype="multipart/form-data">
+        
+                        <h6 class="mb-3 text-sm">Upload all data</h6>
+                        <input type="file" id="file" name="file">
+                      </div>
+                      <div class="ms-auto text-end">
+                        <button type="submit" name="button" value="Upload Notes" class="btn btn-link text-dark px-3 mb-0"><i class="ni ni-cloud-upload-96 text-dark me-2" aria-hidden="true"></i>Upload</button>
+                      </div>  
+                    </form>
+              
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      
+
+      <footer class="footer pt-3  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                made with <i class="fa fa-heart"></i> by
+                <a href="https://www.linkedin.com/in/nasermadi/" class="font-weight-bold" target="_blank">Naser Al Madi</a>.
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                <li class="nav-item">
+                  <a href="/index" class="nav-link text-muted" target="_blank">iPlan-It.com</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a href="license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+  
+  <!--   Core JS Files   -->
+  <script src="{{ url_for('static', filename='js/core/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/core/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/plugins/perfect-scrollbar.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/plugins/smooth-scrollbar.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/plugins/chartjs.min.js') }}"></script>
+
+  <script>
+    function deleteUser(userName, userID) {
+      if ( confirm("Delete user " + userName + "(id:" + userID + ")?") == true) {
+        window.location.href = "/delete_user/" + userID;
+      }
+    }
+  </script>
+
+  <script>
+    var ctx1 = document.getElementById("chart-bar-visits").getContext("2d");
+  
+    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+  
+    gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+    gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+    gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+  
+    new Chart(ctx1, {
+      type: "bar",
+      data: {
+        labels: {{ page_labels | safe }},
+        datasets: [{
+          label: "visits",
+          tension: 0.2,
+          borderWidth: 0,
+          pointRadius: 0,
+          borderColor: "#2d89ce",
+          backgroundColor: "#2d89ce",
+          borderWidth: 4,
+          fill: false,
+          data: {{ page_counts | safe }},
+          maxBarThickness: 26
+        },
+      ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: true,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: true,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              stepSize: 1,
+              display: true,
+              padding: 10,
+              color: '#fbfbfb',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#ccc',
+              padding: 20,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+  </script>
+
+
+
+<script>
+  var ctx1 = document.getElementById("chart-line").getContext("2d");
+
+  var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+
+  gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+  gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+  gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+
+  new Chart(ctx1, {
+    type: "line",
+    data: {
+      labels: {{ chart_week | safe }},
+      datasets: [{
+        label: "this week",
+        tension: 0.2,
+        borderWidth: 0,
+        pointRadius: 0,
+        borderColor: "#2d89ce",
+        backgroundColor: "#2d89ce",
+        borderWidth: 4,
+        fill: false,
+        data: {{ week_users }},
+        maxBarThickness: 6
+      },{
+        label: "last week",
+        tension: 0.1,
+        borderWidth: 0,
+        pointRadius: 0,
+        borderColor: "#2dcbce",
+        backgroundColor: "#2dcbce",
+        borderWidth: 2,
+        fill: false,
+        data: {{ two_week_users }},
+        maxBarThickness: 6
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+        }
+      },
+      interaction: {
+        intersect: false,
+        mode: 'index',
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [5, 5]
+          },
+          ticks: {
+            display: true,
+            padding: 10,
+            color: '#fbfbfb',
+            font: {
+              size: 11,
+              family: "Open Sans",
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+            borderDash: [5, 5]
+          },
+          ticks: {
+            display: true,
+            color: '#ccc',
+            padding: 20,
+            font: {
+              size: 11,
+              family: "Open Sans",
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+      },
+    },
+  });
+</script>
+
+<script>
+  var ctx1 = document.getElementById("chart-line2").getContext("2d");
+
+  var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+
+  gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+  gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+  gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+
+  new Chart(ctx1, {
+    type: "line",
+    data: {
+      labels: {{ chart_week | safe }},
+      datasets: [{
+        label: "this week",
+        tension: 0.2,
+        borderWidth: 0,
+        pointRadius: 0,
+        borderColor: "#ce482d",
+        backgroundColor: "#ce482d",
+        borderWidth: 4,
+        fill: false,
+        data: {{ week_visits }},
+        maxBarThickness: 6
+      },{
+        label: "last week",
+        tension: 0.2,
+        borderWidth: 0,
+        pointRadius: 0,
+        borderColor: "#ce6b2d",
+        backgroundColor: "#ce6b2d",
+        borderWidth: 2,
+        fill: false,
+        data: {{ two_week_visits }},
+        maxBarThickness: 6
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+        }
+      },
+      interaction: {
+        intersect: false,
+        mode: 'index',
+      },
+      scales: {
+        y: {
+          grid: {
+            drawBorder: false,
+            display: true,
+            drawOnChartArea: true,
+            drawTicks: false,
+            borderDash: [5, 5]
+          },
+          ticks: {
+            display: true,
+            padding: 10,
+            color: '#fbfbfb',
+            font: {
+              size: 11,
+              family: "Open Sans",
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: false,
+            drawOnChartArea: false,
+            drawTicks: false,
+            borderDash: [5, 5]
+          },
+          ticks: {
+            display: true,
+            color: '#ccc',
+            padding: 20,
+            font: {
+              size: 11,
+              family: "Open Sans",
+              style: 'normal',
+              lineHeight: 2
+            },
+          }
+        },
+      },
+    },
+  });
+</script>
+
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <script>
+    window.onload = function() {
+      // get utc offset in this format
+      var offset = new Date().getTimezoneOffset();
+      fetch('/settimezone/' + offset / 60)
+    };
+  </script>
+  
+</body>
+
+</html>
